@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 from flask import Flask, jsonify, request
 from database import db, User, IoTDevice
+=======
+from flask import Flask, jsonify
+from models import db
+from routes.order_routes import order_bp
+from routes.product_routes import product_bp
+from routes.restaurant_routes import restaurant_bp
+>>>>>>> 7ac1d1943ada211cc6bd86ce0c1d957454ab8c81
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///smarthome.db'
@@ -7,6 +15,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
 
+<<<<<<< HEAD
 with app.app_context():
     db.create_all()
 
@@ -86,5 +95,18 @@ def create_user():
     return jsonify(new_user.to_dict()), 201
 
 
+=======
+
+
+app.register_blueprint(restaurant_bp, url_prefix='/api/v1/restaurants')
+app.register_blueprint(product_bp, url_prefix='/api/v1/products')
+app.register_blueprint(order_bp, url_prefix='/api/v1/orders')
+@app.route('/')
+def home():
+    return {
+        "message": "Restaurant API radi",
+        "version": "v1"
+    }
+>>>>>>> 7ac1d1943ada211cc6bd86ce0c1d957454ab8c81
 if __name__ == '__main__':
     app.run(debug=True)
