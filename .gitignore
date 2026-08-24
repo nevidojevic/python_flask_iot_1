@@ -1,0 +1,13 @@
+
+.venv/
+env/
+venv/
+
+.idea/
+*.iml
+
+__pycache__/
+*.pyc
+
+*.db
+instance/
